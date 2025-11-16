@@ -10,13 +10,11 @@ ADD CONSTRAINT ck_precio_prod CHECK (precio_prod > 0);
 ALTER TABLE producto
 ADD CONSTRAINT CK_stock CHECK (stock >= 0);
 
-
 ALTER TABLE cliente
 ADD CONSTRAINT uq_cli_email UNIQUE (email_cli);
 
 ALTER TABLE cliente
 ADD CONSTRAINT CK_email_cli CHECK (email_cli LIKE '%@%.%');
-
 
 ALTER TABLE venta
 ADD CONSTRAINT CK_total CHECK (total >= 0);
@@ -86,6 +84,7 @@ CREATE INDEX idx_venta_cliente ON venta(id_cliente);
 
 CREATE INDEX idx_detalle_venta_venta ON detalle_venta(id_venta);
 CREATE INDEX idx_detalle_venta_producto ON detalle_venta(id_producto);
+
 
 
 
