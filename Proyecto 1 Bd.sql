@@ -104,5 +104,72 @@ INSERT INTO detalle_venta VALUES (2, 1, 3, 1, 8.50, 8.50);
 INSERT INTO detalle_venta VALUES (3, 2, 2, 2, 6.00, 12.00);
 INSERT INTO detalle_venta VALUES (4, 2, 4, 1, 12.00, 12.00);
 
+--Nuevo parte 3
+-- Venta 3: Jeff (cliente 3) → 5× Oreo (ID 4, S/1.50 c/u)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (3, SYSDATE, 7.50, 3);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (5, 3, 4, 5, 1.50, 7.50);
+
+-- Venta 4: Alexander F. (cliente 1) → 3× Papas Lays (ID 2, S/3.00)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (4, SYSDATE, 9.00, 1);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (6, 4, 2, 3, 3.00, 9.00);
+
+-- Venta 5: Alexander C. (cliente 2) → 3× Leche Gloria (ID 3, S/4.50)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (5, SYSDATE, 13.50, 2);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (7, 5, 3, 3, 4.50, 13.50);
+
+-- Venta 6: Jeff (cliente 3) → 2× Coca-Cola 1L (ID 1, S/4.00)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (6, SYSDATE, 8.00, 3);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (8, 6, 1, 2, 4.00, 8.00);
+
+-- Venta 7: Alexander F. (cliente 1) → 2× Sin parar (ID 13, S/4.50) + 1× Oreo (ID 4, S/1.50)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (7, SYSDATE, 10.50, 1);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (9, 7, 13, 2, 4.50, 9.00);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (10, 7, 4, 1, 1.50, 1.50);
+
+-- Venta 8: Alexander C. (cliente 2) → 10× Yogurt 1L (ID 10, S/2.20)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (8, SYSDATE, 22.00, 2);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (11, 8, 10, 10, 2.20, 22.00);
+
+-- Venta 9: Jeff (cliente 3) → 6× Papas Lays (ID 2, S/3.00)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (9, SYSDATE, 18.00, 3);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (12, 9, 2, 6, 3.00, 18.00);
+
+-- Venta 10: Alexander F. (cliente 1) → 4× Frio Rico (ID 14, S/5.00)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (10, SYSDATE, 20.00, 1);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (13, 10, 14, 4, 5.00, 20.00);
+
+-- Venta 11: Alexander C. (cliente 2) → 3× Sprite 500ml (ID 9, S/2.20)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (11, SYSDATE, 6.60, 2);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (14, 11, 9, 3, 2.20, 6.60);
+
+-- Venta 12: Jeff (cliente 3) → 2× Mantequilla (ID 11, S/6.00)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (12, SYSDATE, 12.00, 3);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (15, 12, 11, 2, 6.00, 12.00);
+
+-- Venta 13: Alexander F. (cliente 1) → 2× Papas Lays (ID 2, S/3.00)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (13, SYSDATE, 6.00, 1);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (16, 13, 2, 2, 3.00, 6.00);
+
+-- Venta 14: Alexander C. (cliente 2) → 6× Minisublime (ID 12, S/1.50)
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (14, SYSDATE, 9.00, 2);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (17, 14, 12, 6, 1.50, 9.00);
+
+-- Venta 15: Jeff (cliente 3) → 1× Leche Gloria (4.50) + 2× Papas Lays (6.00) + 1× Oreo (1.50) = 12.00
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (15, SYSDATE, 12.00, 3);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (18, 15, 3, 1, 4.50, 4.50);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (19, 15, 2, 2, 3.00, 6.00);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (20, 15, 4, 1, 1.50, 1.50);
+
+-- Venta 16: Alexander F. (cliente 1) → 1× Coca (4.00) + 1× Leche (4.50) + 2× Papas (6.00) + 1× Oreo (1.50) = 16.00
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (16, SYSDATE, 16.00, 1);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (21, 16, 1, 1, 4.00, 4.00);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (22, 16, 3, 1, 4.50, 4.50);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (23, 16, 2, 2, 3.00, 6.00);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (24, 16, 4, 1, 1.50, 1.50);
+
+-- Venta 17: Alexander C. (cliente 2) → 2× Fanta (ID 8) + 2× Sprite (ID 9) = 2×2.20 + 2×2.20 = 8.80
+INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (17, SYSDATE, 8.80, 2);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (25, 17, 8, 2, 2.20, 4.40);
+INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (26, 17, 9, 2, 2.20, 4.40);
 
 
