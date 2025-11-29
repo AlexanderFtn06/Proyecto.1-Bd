@@ -10,6 +10,7 @@ public class OracleConnection {
     public void conectar() {
         try {
             connection = DriverManager.getConnection(url, usuario, contraseña);
+            connection.setAutoCommit(true);
             System.out.println("Conectado correctamente a la base de datos.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -142,4 +143,130 @@ public class OracleConnection {
             System.out.println(e.getMessage());
         }
     }
+
+    public void registrarVenta(int idVenta, int idCliente) {
+        String sql = "{ call registrar_venta(?, ?) }";
+        try {
+            CallableStatement cs = connection.prepareCall(sql);
+            cs.setInt(1, idVenta);
+            cs.setInt(2, idCliente);
+            cs.execute();
+            System.out.println("Venta registrada exitosamente.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public void agregarDetalleVenta(int idDetalle, int idVenta, int idProducto, int cantidad) {
+        String sql = "{ call agregar_detalle_venta(?, ?, ?, ?) }";
+        try {
+            CallableStatement cs = connection.prepareCall(sql);
+            cs.setInt(1, idDetalle);
+            cs.setInt(2, idVenta);
+            cs.setInt(3, idProducto);
+            cs.setInt(4, cantidad);
+            cs.execute();
+            System.out.println("Detalle agregado exitosamente.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public void actualizarVenta(int idVenta, int idCliente) {
+        String sql = "{ call actualizar_venta(?, ?) }";
+        try {
+            CallableStatement cs = connection.prepareCall(sql);
+            cs.setInt(1, idVenta);
+            cs.setInt(2, idCliente);
+            cs.execute();
+            System.out.println("Venta actualizada correctamente.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean existeVenta(int idVenta) {
+        String sql = "SELECT COUNT(*) FROM venta WHERE id_venta = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, idVenta);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // true si existe
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+
+    public void eliminarVenta(int idVenta) {
+
+        // Verificar si existe
+        if (!existeVenta(idVenta)) {
+            System.out.println("ID no registrado");
+            return;
+        }
+
+        String sql = "{ call eliminar_venta(?) }";
+
+        try {
+            CallableStatement cs = connection.prepareCall(sql);
+            cs.setInt(1, idVenta);
+
+            cs.execute();
+
+            System.out.println("✔ Venta eliminada correctamente.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+
+
+    public void mostrarVista(String vista) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + vista);
+            ResultSet rs = ps.executeQuery();
+
+            ResultSetMetaData meta = rs.getMetaData();
+            int colCount = meta.getColumnCount();
+
+            while (rs.next()) {
+                for (int i = 1; i <= colCount; i++) {
+                    System.out.print(meta.getColumnName(i) + ": " + rs.getString(i) + " | ");
+                }
+                System.out.println();
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public int obtenerNuevoIdDetalle() {
+        String sql = "SELECT NVL(MAX(id_detalle), 0) + 1 FROM detalle_venta";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 1;
+    }
+
+
 }
+
