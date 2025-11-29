@@ -66,19 +66,19 @@ INSERT INTO categoria VALUES (1, 'Bebidas');
 INSERT INTO categoria VALUES (2, 'Lácteos');
 INSERT INTO categoria VALUES (3, 'Snacks');
 INSERT INTO categoria VALUES (4, 'Galletas');
-INSERT INTO categoria VALUES (5, 'Helados'); --Nuevo
+INSERT INTO categoria VALUES (5, 'Helados');
 
 INSERT INTO proveedor VALUES (1, 'BACKUS', '987654321', 'contacto.back@backus.com');
 INSERT INTO proveedor VALUES (2, 'Alicorp', '963258741', 'contacto.alic@alicorp.com');
 INSERT INTO proveedor VALUES (3, 'Gloria S.A', '912345678', 'ventas.glo@gloria.com');
-INSERT INTO proveedor VALUES (4, 'Donofrio', '990104821', 'ventas.dono@donofrio.com'); --Nuevo
+INSERT INTO proveedor VALUES (4, 'Donofrio', '990104821', 'ventas.dono@donofrio.com');
 
 INSERT INTO producto VALUES (1, 'Coca-Cola 1L', 4.00, 100, 1, 1);
 INSERT INTO producto VALUES (2, 'Papas Lays', 3.00, 200, 3, 2);
 INSERT INTO producto VALUES (3, 'Leche Gloria ', 4.50, 150, 2, 3);
 INSERT INTO producto VALUES (4, 'Oreo', 1.50, 80, 4, 2);
 
---Nuevo
+
 INSERT INTO producto VALUES (7, 'Inka kola 1L', 4.00, 80, 1, 1);
 INSERT INTO producto VALUES (8, 'Fanta 500ml', 2.20, 100, 1, 1);
 INSERT INTO producto VALUES (9, 'Sprite 500ml', 2.20, 100, 1, 1);
@@ -88,7 +88,8 @@ INSERT INTO producto VALUES (12, 'Minisublime', 1.50, 80, 5, 4);
 INSERT INTO producto VALUES (13, 'Sin parar', 4.50, 80, 5, 4);
 INSERT INTO producto VALUES (14, 'Frio Rico', 5.00, 110, 5, 4);
 Commit;
-
+--Para ingresar nuevos datos desde sql developer realizar un commit al final
+--para que en el intellij tambien se actualize
 
 INSERT INTO cliente VALUES (1, 'Alexander Faustino', 'alexander.faustino@tecsup.edu.pe');
 INSERT INTO cliente VALUES (2, 'Alexander Canari', 'alexander.canari@tecsup.edu.pe');
@@ -104,7 +105,6 @@ INSERT INTO detalle_venta VALUES (2, 1, 3, 1, 8.50, 8.50);
 INSERT INTO detalle_venta VALUES (3, 2, 2, 2, 6.00, 12.00);
 INSERT INTO detalle_venta VALUES (4, 2, 4, 1, 12.00, 12.00);
 
---Nuevo parte 3
 -- Venta 3: Jeff (cliente 3) → 5× Oreo (ID 4, S/1.50 c/u)
 INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (3, SYSDATE, 7.50, 3);
 INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (5, 3, 4, 5, 1.50, 7.50);
@@ -171,5 +171,3 @@ INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, 
 INSERT INTO venta (id_venta, fecha, total, id_cliente) VALUES (17, SYSDATE, 8.80, 2);
 INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (25, 17, 8, 2, 2.20, 4.40);
 INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio, subtotal) VALUES (26, 17, 9, 2, 2.20, 4.40);
-
-
